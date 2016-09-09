@@ -58,12 +58,12 @@ class GridFSBucket implements Adapter,
     /**
      * {@inheritdoc}
      */
-    public function write($key, $content)
+    public function write($key, $content, array $metadata = [])
     {
         if (!is_resource($content) || get_resource_type($content) != 'stream') {
             $content = $this->createInMemoryStream($content);
         }
-        $id = $this->gridFSBucket->uploadFromStream($key, $content);
+        $id = $this->gridFSBucket->uploadFromStream($key, $content, $metadata);
         return Util\Size::fromResource($content);
     }
 
