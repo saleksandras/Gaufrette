@@ -42,7 +42,7 @@ class GridFS implements Adapter,
     /**
      * {@inheritdoc}
      */
-    public function write($key, $content)
+    public function write($key, $content, array $metadata = [])
     {
         if ($this->exists($key)) {
             $this->delete($key);
